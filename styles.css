@@ -1,0 +1,69 @@
+.container {
+  width: 100%;
+  display: grid;
+}
+
+.cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+}
+
+.card {
+  height: 300px;
+  width: 95%;
+  border: 1px solid rgba(0, 191, 255, 0.5);
+  display: inline-block;
+  text-align: center;
+}
+
+.btn {
+  background: rgba(75, 119, 190, 1);
+  height: 50px;
+  width: 100px;
+  color: white;
+  border-radius: 10px;
+}
+
+#modal {
+  display: none;
+}
+
+.close {
+  background: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  margin: 5px 0 0 5px;
+  text-align: center;
+}
+
+.close:hover {
+  opacity: 60%;
+}
+
+input {
+  display: inline;
+}
+
+form {
+  display: grid;
+  justify-items: center;
+  width: 20%;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 191, 255, 0.8);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  position: fixed;
+  left: 40%;
+  top: 20px;
+}
+
+footer {
+  display: grid;
+  width: 100%;
+  position: fixed;
+  bottom: 10px;
+  justify-items: center;
+}
