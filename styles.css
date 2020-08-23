@@ -30,7 +30,7 @@
   display: none;
 }
 
-.close {
+.close-btn {
   background: red;
   width: 20px;
   height: 20px;
@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.close:hover {
+.close-btn:hover {
   opacity: 60%;
 }
 
@@ -50,7 +50,7 @@ input {
 form {
   display: grid;
   justify-items: center;
-  width: 20%;
+  width: 300px;
   border-radius: 5px;
   border: 1px solid rgba(0, 191, 255, 0.8);
   background: rgba(0, 0, 0, 0.5);
