@@ -30,7 +30,7 @@
   display: none;
 }
 
-.close-btn {
+.delete-btn {
   background: red;
   width: 20px;
   height: 20px;
@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.close-btn:hover {
+.delete-btn:hover {
   opacity: 60%;
 }
 
