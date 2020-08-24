@@ -18,10 +18,22 @@ function addBookToLibrary(book){
 function addCard(book, index) {
   const div = document.createElement('div');// Creates new div
   div.classList.add('card'); // Adds class card for styling
-  div.innerHTML = `<h1>${book.title}</h1> 
-                   <h3>${book.author}</h3>
-                   <p>${book.pages} pages</p>
-                   <p>Status: ${book.read}</p>`;// Adds info to card
+
+  // Adds all elements to card
+  const title = document.createElement('h1');
+  title.textContent = `${book.title}`;
+  div.appendChild(title);
+  const author = document.createElement('h3');
+  author.textContent = `${book.author}`;
+  div.appendChild(author);
+  const pages = document.createElement('p');
+  pages.textContent = `${book.pages} pages`;
+  div.appendChild(pages);
+  const read = document.createElement('p');
+  read.textContent = `Status: ${book.read}`;
+  read.classList.add('status');
+  div.appendChild(read);
+               
   div.setAttribute('data-index', index); // Sets data attribute to find card
   const cards = document.querySelector('.cards');// Selects parent element
   cards.appendChild(div);// Adds card as a child to the end
@@ -30,11 +42,17 @@ function addCard(book, index) {
   deleteBtn.classList.add('delete-btn');// Adds class to style button
   deleteBtn.textContent = 'X';// Adds letter 'x'
   div.insertBefore(deleteBtn, div.firstChild);// Adds delete button to top of card
-  addDelete(div);// Adds delete listener
+  deleteListener(div);// Adds delete listener
+
+  const readBtn = document.createElement('button');// Creates a button inside card to toggle whether it is read or not
+  readBtn.classList.add('read-btn');// Adds class to style button
+  readBtn.textContent = 'Read/Unread';
+  div.appendChild(readBtn);
+  readListener(div);
 }
 
 // Creates listener to delete button on each card.
-function addDelete(div){
+function deleteListener(div){
   const deleteBtn = div.querySelector('.delete-btn');
   deleteBtn.onclick = function () {
     deleteBook(div);
@@ -49,10 +67,29 @@ function deleteBook(book) {
   library.splice(index, 1);
 }
 
+function readListener(div) {
+  const readBtn = div.querySelector('.read-btn');
+  readBtn.onclick = function () {
+    changeReadStatus(div);
+  }
+}
+
+function changeReadStatus(book) {
+  let status = book.querySelector('.status');
+  let index = book.getAttribute('data-index');
+  if(status.innerHTML !=  'Status: Read') {
+    status.innerHTML = 'Status: Read';
+    library[index].read = 'Read'
+  } else {
+    status.innerHTML = 'Status: Not yet read';
+    library[index].read = 'Not yet read'
+  }
+}
+
 // Loops through each book in library and creates a card for it.
 function render(library) {
   library.forEach(addCard);
-}
+ }
 
 // MODAL (Pop up for creating new book)
 

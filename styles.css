@@ -67,3 +67,7 @@ footer {
   bottom: 10px;
   justify-items: center;
 }
+
+.completed {
+  background: url('media/completed.jpeg');
+}
