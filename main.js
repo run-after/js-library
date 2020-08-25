@@ -24,7 +24,17 @@ function addCard(book, index) {
   const div = document.createElement('div');// Creates new div
   div.classList.add('card'); // Adds class card for styling
 
-  // Adds all elements to card
+  addElements(div, book);
+               
+  div.setAttribute('data-index', index); // Sets data attribute to find card
+  const cards = document.querySelector('.cards');// Selects parent element
+  cards.appendChild(div);// Adds card as a child to the end
+
+  addDeleteBtn(div);
+  addReadBtn(div);
+}
+// Helper for addCard()
+function addElements(div, book) {
   const title = document.createElement('h1');
   title.textContent = `${book.title}`;
   div.appendChild(title);
@@ -38,22 +48,24 @@ function addCard(book, index) {
   read.textContent = `Status: ${book.read}`;
   read.classList.add('status');
   div.appendChild(read);
-               
-  div.setAttribute('data-index', index); // Sets data attribute to find card
-  const cards = document.querySelector('.cards');// Selects parent element
-  cards.appendChild(div);// Adds card as a child to the end
+}
 
+// Helper for addCard()
+function addDeleteBtn(card) {
   const deleteBtn = document.createElement('div'); // Creates a div inside card(close button)
   deleteBtn.classList.add('delete-btn');// Adds class to style button
   deleteBtn.textContent = 'X';// Adds letter 'x'
-  div.insertBefore(deleteBtn, div.firstChild);// Adds delete button to top of card
-  deleteListener(div);// Adds delete listener
+  card.insertBefore(deleteBtn, card.firstChild);// Adds delete button to top of card
+  deleteListener(card);// Adds delete listener
+}
 
-  const readBtn = document.createElement('button');// Creates a button inside card to toggle whether it is read or not
+// Helper for addCard()
+function addReadBtn(card) {
+    const readBtn = document.createElement('button');// Creates a button inside card to toggle whether it is read or not
   readBtn.classList.add('read-btn');// Adds class to style button
   readBtn.textContent = 'Read/Unread';
-  div.appendChild(readBtn);
-  readListener(div);
+  card.appendChild(readBtn);
+  readListener(card);
 }
 
 // Creates listener to delete button on each card.
