@@ -1,5 +1,10 @@
 // Storage for all books
-let library = [];
+if(localStorage.length > 0) {
+  library = JSON.parse(localStorage['library']);
+} else {
+  library = [];
+}
+render(library);
 
 // Constructor
 function Book(title, author, pages, read) {
@@ -65,8 +70,10 @@ function deleteBook(book) {
   // Delete from library
   let index = book.getAttribute('data-index');
   library.splice(index, 1);
+  localStorage.setItem('library', JSON.stringify(library));////////////
 }
 
+// Creates listener to change read status on each card
 function readListener(div) {
   const readBtn = div.querySelector('.read-btn');
   readBtn.onclick = function () {
@@ -84,17 +91,24 @@ function changeReadStatus(book) {
     status.innerHTML = 'Status: Not yet read';
     library[index].read = 'Not yet read'
   }
+  store(library);
 }
 
 // Loops through each book in library and creates a card for it.
 function render(library) {
   library.forEach(addCard);
- }
+  store(library);
+}
+
+function store(library) {
+  localStorage.clear();
+  localStorage.setItem('library', JSON.stringify(library));
+}
 
 // MODAL (Pop up for creating new book)
-
 let modal = document.getElementById('modal');
 let newBtn = document.getElementById('new-book-btn');
+
 // Pops up form
 newBtn.onclick = function () {
   modal.style.display = "block";
@@ -112,7 +126,6 @@ function createNew() {
   } else {
     read = 'Not yet read';
   }
-
   let book = new Book(title, author, pages, read);
   addBookToLibrary(book);
 }
