@@ -6,6 +6,9 @@
     <title>Odin Library</title>
   </head>
   <body>
+    <header> 
+      <button id="new-book-btn" class="btn">+</button>
+    </header>
     <div class="container">
       <div class="cards">
       </div>
@@ -24,15 +27,16 @@
           <input type="text" id="pages" name="pages">
           <br>
           <label for="read">Read?</label>
-          <input type="radio" name="read" value="true">Yes
-          <input type="radio" name="read" value="false" checked="checked">No
+          <div class="radios">
+            <input type="radio" name="read" value="true">Yes
+            <input type="radio" name="read" value="false" checked="checked">No
+          </div>
           <br>
           <button id="add-book-btn" type="button">Add Book</button>
+
         </form>
       </div>
     </div>
-
-    <footer> <button id="new-book-btn" class="btn">New Book</button></footer>
     <script src="main.js"></script>
   </body>
 </html>
