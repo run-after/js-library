@@ -17,6 +17,9 @@ function Book(title, author, pages, read) {
 // Adds book to library array
 function addBookToLibrary(book){
   library.push(book);
+  if(library.length === 0) {
+    hideImage();
+  }
 }
 
 // Creates a new card, fills in all the data, adds listener to delete card
@@ -32,6 +35,9 @@ function addCard(book, index) {
 
   addDeleteBtn(div);
   addReadBtn(div);
+  if(library.length != 0) {
+    hideImage();
+  }
 }
 // Helper for addCard()
 function addElements(div, book) {
@@ -83,6 +89,9 @@ function deleteBook(book) {
   let index = book.getAttribute('data-index');
   library.splice(index, 1);
   localStorage.setItem('library', JSON.stringify(library));////////////
+  if(library.length === 0) {
+    showImage();
+  }
 }
 
 // Creates listener to change read status on each card
@@ -156,3 +165,14 @@ function clear() {
   const cards = document.querySelector('.cards');
   cards.innerHTML = '';
 }
+
+function showImage() {
+  const addBtnImg = document.getElementById('add-book-img');
+    addBtnImg.style.display = 'block';
+  }
+
+  function hideImage() {
+    const addBtnImg = document.getElementById('add-book-img');
+    addBtnImg.style.display = 'none'; 
+  }
+
