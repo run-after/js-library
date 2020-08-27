@@ -119,6 +119,11 @@ function changeReadStatus(book) {
 function render(library) {
   library.forEach(addCard);
   store(library);
+  if(library.length === 0) {
+    showImage();
+  } else {
+    hideImage();
+  }
 }
 
 function store(library) {
@@ -171,8 +176,8 @@ function showImage() {
     addBtnImg.style.display = 'block';
   }
 
-  function hideImage() {
-    const addBtnImg = document.getElementById('add-book-img');
-    addBtnImg.style.display = 'none'; 
-  }
+function hideImage() {
+  const addBtnImg = document.getElementById('add-book-img');
+  addBtnImg.style.display = 'none'; 
+}
 
