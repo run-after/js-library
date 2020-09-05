@@ -6,6 +6,24 @@ if(localStorage.length > 0) {
 }
 render(library);
 
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  addBookToLibrary() {
+    library.push(this);
+  if(library.length === 0) {
+    hideImage();
+  }
+  }
+}
+/*
+  BELOW IS THE CONSTRUCTOR FORM, THEN MADE IT A CLASS
+
 // Constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -20,6 +38,7 @@ Book.prototype.addBookToLibrary = function() {
     hideImage();
   }
 }
+*/
 
 // Creates a new card, fills in all the data, adds listener to delete card
 function addCard(book, index) {
