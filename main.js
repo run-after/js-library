@@ -14,9 +14,8 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-// Adds book to library array
-function addBookToLibrary(book){
-  library.push(book);
+Book.prototype.addBookToLibrary = function() {
+  library.push(this);
   if(library.length === 0) {
     hideImage();
   }
@@ -153,7 +152,7 @@ function createNew() {
     read = 'Not yet read';
   }
   let book = new Book(title, author, pages, read);
-  addBookToLibrary(book);
+  book.addBookToLibrary();
 }
 
 let addBtn = document.getElementById('add-book-btn');
